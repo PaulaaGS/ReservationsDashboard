@@ -1,0 +1,19 @@
+.reservation-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-content {
+    padding: 0.7rem;
+}
+
+.card-header {
+    margin-bottom: 0.5rem;
+}
