@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Reservation } from "../../../types/reservation";
 import { formatDate } from "../../../utils/dateFormatters";
+import { getStatusesToChange } from "../../../utils/reservationUtils";
 import "./ReservationCard.css";
-import { Link } from "react-router-dom";
 
 interface ReservationCardProps {
   reservation: Reservation;
@@ -34,8 +35,18 @@ const ReservationCard: React.FC<ReservationCardProps> = ({
             </button>
             {isOpen && (
               <div className="context-menu">
-                <Link to={`/edit/${reservation.id}`}>Edytuj</Link>
-                <Link to={`/edit/${reservation.id}`}>Usuń</Link>
+                <button className="menu-btn">
+                  <Link to={`/edit/${reservation.id}`}>Edytuj</Link>
+                </button>
+                <button className="menu-btn">Usuń</button>
+                <div className="change-status">
+                  <div>Zmień status:</div>
+                  {getStatusesToChange(reservation.status).map((status) => (
+                    <button key={status} className="menu-btn">
+                      {status}
+                    </button>
+                  ))}
+                </div>
               </div>
             )}
           </div>

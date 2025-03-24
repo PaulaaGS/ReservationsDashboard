@@ -61,3 +61,20 @@ export const getReservationById = (id: string): Reservation | undefined => {
 
   return validReservations.find(x => x.id === id);
 }
+
+export const getStatusesToChange = (status: ReservationStatus): ReservationStatus[] => {
+  switch (status) {
+    case "Reserved":
+      return ["Canceled", "Due In"];
+    case "Due In":
+      return ["Canceled", "No Show", "In House"];
+    case "In House":
+      return ["Checked Out"];
+    case "Checked Out":
+      return ["In House"];
+    case "Canceled":
+      return ["Reserved"];
+    default:
+      return [];
+  }
+};
