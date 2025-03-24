@@ -28,41 +28,49 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
     onChange(newReservation);
   };
 
+  const disabled =
+    !reservation.guestName ||
+    !reservation.checkInDate ||
+    !reservation.checkOutDate;
+
   return (
     <div className="reservation-form">
       <h1 className="form-header">{title}</h1>
       <form onSubmit={handleSubmit}>
         <Input
           name="guestName"
-          label="Imię i nazwisko:"
+          label="Imię i nazwisko"
           value={reservation.guestName}
           onChange={handleChange}
+          required
         />
         <Input
           name="checkInDate"
           type="date"
-          label="Przyjazd:"
+          label="Przyjazd"
           value={reservation.checkInDate}
           onChange={handleChange}
+          required
         />
         <Input
           name="checkOutDate"
           type="date"
-          label="Wyjazd:"
+          label="Wyjazd"
           value={reservation.checkOutDate}
           onChange={handleChange}
+          required
         />
         <Input
           name="notes"
-          label="Notatki:"
+          label="Notatki"
           value={reservation.notes}
           onChange={handleChange}
         />
         <div className="form-buttons">
-          <button type="submit" className="form-btn">
+          <button type="submit" className="save-btn" disabled={disabled}>
             Zapisz
           </button>
-          <button className="form-btn">
+          <button className="cancel-btn">
             <Link to="/">Anuluj</Link>
           </button>
         </div>

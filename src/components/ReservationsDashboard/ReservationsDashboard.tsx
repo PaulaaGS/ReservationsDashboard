@@ -24,14 +24,10 @@ function ReservationsDashboard() {
     }, 800);
   }, []);
 
-  return (
-    <main className="main-content">
-      {loading ? (
-        <div className="loading">Ładowanie danych rezerwacji...</div>
-      ) : (
-        <ReservationBoard reservations={reservations} />
-      )}
-    </main>
+  return loading ? (
+    <div className="loading">Ładowanie danych rezerwacji...</div>
+  ) : (
+    <ReservationBoard reservations={reservations} />
   );
 }
 
