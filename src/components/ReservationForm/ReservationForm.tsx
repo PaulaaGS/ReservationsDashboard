@@ -1,8 +1,9 @@
 import React, { ChangeEventHandler, FormEventHandler } from "react";
-import "./ReservationForm.css";
-import Input from "./Input/Input";
 import { Link } from "react-router-dom";
 import { ReservationFormData } from "../../types/reservation";
+import { isAfter, isTodayOrAfter } from "../../utils/dateUtils";
+import Input from "./Input/Input";
+import "./ReservationForm.css";
 
 interface ReservationFormProps {
   title: string;
@@ -30,8 +31,8 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
 
   const disabled =
     !reservation.guestName ||
-    !reservation.checkInDate ||
-    !reservation.checkOutDate;
+    !isTodayOrAfter(reservation.checkInDate) ||
+    !isAfter(reservation.checkOutDate, reservation.checkInDate);
 
   return (
     <div className="reservation-form">
@@ -49,6 +50,7 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
           type="date"
           label="Przyjazd"
           value={reservation.checkInDate}
+          min={new Date().toISOString().substring(0, 10)}
           onChange={handleChange}
           required
         />
@@ -57,6 +59,7 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
           type="date"
           label="Wyjazd"
           value={reservation.checkOutDate}
+          min={new Date().toISOString().substring(0, 10)}
           onChange={handleChange}
           required
         />
