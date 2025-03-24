@@ -1,7 +1,8 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Layout from './components/Layout/Layout'
-import ReservationsDashboard from './components/ReservationsDashboard/ReservationsDashboard'
-import ReservationForm from './components/ReservationForm/ReservationForm'
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout/Layout";
+import ReservationsDashboard from "./components/ReservationsDashboard/ReservationsDashboard";
+import EditReservation from "./components/ReservationForm/EditReservation";
+import AddReservation from "./components/ReservationForm/AddReservation";
 
 function App() {
   return (
@@ -9,12 +10,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<ReservationsDashboard />} />
-          <Route path="/edit/:id" element={<ReservationForm />} />
-          <Route path="/add/" element={<ReservationForm />} />
+          <Route path="/edit/:id" element={<EditReservation />} />
+          <Route path="/add/" element={<AddReservation />} />
         </Route>
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;

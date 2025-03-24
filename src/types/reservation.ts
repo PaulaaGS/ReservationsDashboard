@@ -28,3 +28,5 @@ export interface ReservationResponse {
   notes?: string;
   email?: string;
 }
+
+export type ReservationFormData = Partial<Reservation>;
