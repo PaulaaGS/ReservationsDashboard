@@ -30,8 +30,8 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
 
   return (
     <div className="reservation-form">
-      <h1 className="card-header">{title}</h1>
-      <form className="card-content" onSubmit={handleSubmit}>
+      <h1 className="form-header">{title}</h1>
+      <form onSubmit={handleSubmit}>
         <Input
           name="guestName"
           label="Imię i nazwisko:"
@@ -58,8 +58,14 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
           value={reservation.notes}
           onChange={handleChange}
         />
-        <button type="submit">Zapisz</button>
-        <Link to="/">Anuluj</Link>
+        <div className="form-buttons">
+          <button type="submit" className="form-btn">
+            Zapisz
+          </button>
+          <button className="form-btn">
+            <Link to="/">Anuluj</Link>
+          </button>
+        </div>
       </form>
     </div>
   );

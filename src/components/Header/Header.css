@@ -18,15 +18,23 @@
   margin: 0;
   font-size: 1.5rem;
   font-weight: 600;
+  color: white;
 }
 
 .header-actions {
   display: flex;
   align-items: center;
+  gap: 30px;
 }
 
 .date-display {
   font-size: 0.9rem;
   color: #ecf0f1;
   text-align: right;
-} 
+}
+
+.add-reservation {
+  background-color: #000;
+  padding: 6px 10px;
+  color: inherit;
+}
