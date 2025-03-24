@@ -1,15 +1,19 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useReservations } from "../../context/ReservationContext";
 import { ReservationFormData } from "../../types/reservation";
 import { mapFormDataToReservation } from "../../utils/reservationUtils";
 import ReservationForm from "./ReservationForm";
 
 const AddReservation: React.FC = () => {
+  const { addReservation } = useReservations();
+  const navigate = useNavigate();
   const [reservation, setReservation] = useState<ReservationFormData>({});
 
   const handleSubmit = () => {
     const newReservation = mapFormDataToReservation(reservation);
-    alert(`Form submited, ${JSON.stringify(newReservation)}`);
-    // save newReservation to the JSON file
+    addReservation(newReservation);
+    navigate("/");
   };
 
   return (

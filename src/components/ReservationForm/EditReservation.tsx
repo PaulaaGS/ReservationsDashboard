@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useReservations } from "../../context/ReservationContext";
 import { ReservationFormData } from "../../types/reservation";
 import {
   getReservationById,
@@ -9,6 +10,8 @@ import ReservationForm from "./ReservationForm";
 
 const EditReservation: React.FC = () => {
   const { id } = useParams();
+  const { editReservation } = useReservations();
+  const navigate = useNavigate();
   const [reservation, setReservation] = useState<ReservationFormData>();
 
   useEffect(() => {
@@ -26,8 +29,8 @@ const EditReservation: React.FC = () => {
 
   const handleSubmit = () => {
     const newReservation = mapFormDataToReservation(reservation!);
-    alert(`Form submited, ${JSON.stringify(newReservation)}`);
-    // save newReservation to the JSON file
+    editReservation(newReservation);
+    navigate("/");
   };
 
   return reservation ? (

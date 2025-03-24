@@ -4,6 +4,7 @@ import { Reservation } from "../../../types/reservation";
 import { formatDate } from "../../../utils/dateFormatters";
 import { getStatusesToChange } from "../../../utils/reservationUtils";
 import "./ReservationCard.css";
+import { useReservations } from "../../../context/ReservationContext";
 
 interface ReservationCardProps {
   reservation: Reservation;
@@ -14,6 +15,7 @@ const ReservationCard: React.FC<ReservationCardProps> = ({
   reservation,
   statusColor,
 }) => {
+  const { changeStatus, deleteReservation } = useReservations();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {
@@ -38,11 +40,20 @@ const ReservationCard: React.FC<ReservationCardProps> = ({
                 <button className="menu-btn">
                   <Link to={`/edit/${reservation.id}`}>Edytuj</Link>
                 </button>
-                <button className="menu-btn">Usuń</button>
+                <button
+                  className="menu-btn"
+                  onClick={() => deleteReservation(reservation.id)}
+                >
+                  Usuń
+                </button>
                 <div className="change-status">
                   <div>Zmień status:</div>
                   {getStatusesToChange(reservation.status).map((status) => (
-                    <button key={status} className="menu-btn">
+                    <button
+                      key={status}
+                      className="menu-btn"
+                      onClick={() => changeStatus(reservation.id, status)}
+                    >
                       {status}
                     </button>
                   ))}
