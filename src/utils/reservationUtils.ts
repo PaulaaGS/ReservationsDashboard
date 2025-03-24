@@ -1,5 +1,6 @@
 import { Reservation, ReservationFormData, ReservationResponse, ReservationStatus } from '../types/reservation';
 import { v4 as uuid } from 'uuid'
+import reservationsData from "../data/reservations.json";
 
 const isValidStatus = (status: string): status is ReservationStatus => {
   return ['Reserved', 'Due In', 'In House', 'Due Out', 'Checked Out', 'Canceled', 'No Show'].includes(status);
@@ -51,4 +52,12 @@ export const mapFormDataToReservation = (data: ReservationFormData): Reservation
     notes: data.notes,
     email: data.email
   }
+}
+
+export const getReservationById = (id: string): Reservation | undefined => {
+  const validReservations = reservationsData.map(
+    mapResponseObjectToReservation
+  );
+
+  return validReservations.find(x => x.id === id);
 }
